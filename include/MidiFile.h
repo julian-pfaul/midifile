@@ -89,8 +89,10 @@ class MidiFile {
 
 		// tick-related functions:
 		void             makeDeltaTicks            (void);
+		void             setDeltaTicks             (void) { makeDeltaTicks(); }
 		void             deltaTicks                (void);
 		void             makeAbsoluteTicks         (void);
+		void             setAbsoluteTicks          (void) { makeAbsoluteTicks(); }
 		void             absoluteTicks             (void);
 		int              getTickState              (void) const;
 		bool             isDeltaTicks              (void) const;

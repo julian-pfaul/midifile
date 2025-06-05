@@ -16,8 +16,10 @@
 #include <cstdlib>
 #include <iterator>
 #include <list>
+#include <stdexcept>
 #include <utility>
 #include <vector>
+
 
 
 namespace smf {
@@ -83,6 +85,28 @@ MidiEvent&  MidiEventList::operator[](int index) {
 
 
 const MidiEvent&  MidiEventList::operator[](int index) const {
+	return *list[index];
+}
+
+
+
+//////////////////////////////
+//
+// MidiEventList::at -- Similar to vector::at, checking validity of index.
+//
+
+MidiEvent& MidiEventList::at(int index) {
+	if (index < 0 || static_cast<size_t>(index) >= list.size()) {
+		throw std::out_of_range("Index out of bounds: " + std::to_string(index));
+	}
+	return *list[index];
+}
+
+
+const MidiEvent& MidiEventList::at(int index) const {
+	if (index < 0 || static_cast<size_t>(index) >= list.size()) {
+		throw std::out_of_range("Index out of bounds: " + std::to_string(index));
+	}
 	return *list[index];
 }
 
